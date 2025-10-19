@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking Booster Community - Разговорный клуб английского</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333C42;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #333C42 0%, #649298 100%);
+            color: #FFF9E8;
+            padding: 100px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,249,232,0.1)"/></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: #CA694B;
+            color: #FFF9E8;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(202, 105, 75, 0.5);
+            background: #b55a3f;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #333C42;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: #FFF9E8;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(51, 60, 66, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(51, 60, 66, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #649298;
+        }
+
+        .benefits {
+            background: linear-gradient(135deg, #FFF9E8 0%, #e8dcc8 100%);
+        }
+
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            color: #333C42;
+        }
+
+        .benefit-item:hover {
+            transform: scale(1.05);
+        }
+
+        .benefit-item::before {
+            content: '✅';
+            font-size: 1.5em;
+            margin-right: 15px;
+        }
+
+        .pricing {
+            background: white;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: #FFF9E8;
+            border: 3px solid #649298;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #649298;
+            box-shadow: 0 20px 50px rgba(100, 146, 152, 0.3);
+        }
+
+        .pricing-card.popular {
+            border-color: #649298;
+            box-shadow: 0 10px 40px rgba(100, 146, 152, 0.2);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #649298 0%, #333C42 100%);
+            color: #FFF9E8;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #333C42;
+        }
+
+        .price {
+            font-size: 2.5em;
+            color: #649298;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .savings {
+            color: #649298;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .pricing-features li {
+            list-style: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #649298;
+            color: #333C42;
+        }
+
+        .pricing-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #CA694B;
+            color: #FFF9E8;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .pricing-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(202, 105, 75, 0.4);
+            background: #b55a3f;
+        }
+
+        .topics {
+            background: white;
+        }
+
+        .topics-list {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+        }
+
+        .topic-item {
+            background: #FFF9E8;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(51, 60, 66, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .topic-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(51, 60, 66, 0.15);
+        }
+
+        .topic-emoji {
+            font-size: 2.5em;
+            flex-shrink: 0;
+        }
+
+        .topic-text {
+            font-size: 1.1em;
+            color: #333C42;
+            line-height: 1.6;
+        }
+
+        .motivation {
+            background: linear-gradient(135deg, #FFF9E8 0%, #f0e4d0 100%);
+        }
+
+        .motivation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .motivation-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(51, 60, 66, 0.1);
+        }
+
+        .motivation-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #CA694B;
+        }
+
+        .motivation-card p {
+            color: #333C42;
+        }
+
+        .about-me {
+            background: white;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #FFF9E8;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(51, 60, 66, 0.1);
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(51, 60, 66, 0.2);
+        }
+
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .about-content h3 {
+            font-size: 2em;
+            color: #649298;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #333C42;
+        }
+
+        .highlight {
+            color: #CA694B;
+            font-weight: bold;
+        }
+
+        .faq {
+            background: linear-gradient(135deg, #FFF9E8 0%, #e8dcc8 100%);
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(51, 60, 66, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(51, 60, 66, 0.15);
+        }
+
+        .faq-item h3 {
+            font-size: 1.3em;
+            color: #649298;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item h3::after {
+            content: '+';
+            font-size: 1.5em;
+            color: #649298;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active h3::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item p {
+            color: #333C42;
+            line-height: 1.7;
+        }
+
+        .form-section {
+            background: linear-gradient(135deg, #333C42 0%, #649298 100%);
+            color: #FFF9E8;
+            text-align: center;
+        }
+
+        .form-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: #FFF9E8;
+            color: #CA694B;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 249, 232, 0.4);
+        }
+
+        .form-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 249, 232, 0.6);
+            background: #f5eedc;
+        }
+
+        footer {
+            background: #333C42;
+            color: #FFF9E8;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .info-box {
+            background: #649298;
+            color: #FFF9E8;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .about-content {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Speaking Booster Community</h1>
+            <p style="font-size: 1.1em; margin-bottom: 10px; opacity: 0.9;">@katya.proeng</p>
+            <p><strong>Разговорный клуб английского по подписке</strong><br>Практикуйте английский регулярно, прокачивайте уверенность и учитесь свободно говорить на актуальные темы.<br><strong>Старт нового потока — 6 октября</strong></p>
+            <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="cta-button">Записаться в клуб</a>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">О Speaking Booster Community</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Цель клуба</h3>
+                <p>Помочь вам перейти от пассивного понимания к свободной речи — без страха и долгих пауз в обучении</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Для кого</h3>
+                <p>Уровень <strong>уверенный А2 и выше</strong> — идеально, если вы уже понимаете английский, но хотите заговорить уверенно и звучать естественно</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Формат</h3>
+                <p>1 раз групповые встречи в неделю, 4 занятия в месяц по 90 минут каждое + 4 встречи в месяц с вашим бадди (по желанию)</p>
+            </div>
+        </div>
+        <div class="info-box">
+            💡 <strong>Вам не нужно подстраиваться под чужое расписание</strong> — вы выбираете удобное время для бадди-сессий, а групповые занятия проходят в выходные.
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Что вы получите за месяц?</h2>
+            <div class="benefit-list">
+                <div class="benefit-item">4 живых групповых сессии со мной (90 мин каждая, на выходных)</div>
+                <div class="benefit-item">4 Speaking buddy-сессии (по желанию, в удобное время)</div>
+                <div class="benefit-item">1 выступление приглашённого спикера + Q&A</div>
+                <div class="benefit-item">Доступ к онлайн-платформе для закрепления лексики</div>
+                <div class="benefit-item">Подборка карточек Quizlet к каждой теме</div>
+                <div class="benefit-item">Призы за активность (книги, сертификаты, воркшопы)</div>
+                <div class="benefit-item">Оффлайн-встречи в Алматы и Астане для нетворкинга</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-me">
+        <div class="container">
+            <h2 class="section-title">Почему мне можно доверять?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Меня зовут Катя, и я преподаю английский <span class="highlight">уже 5-й год</span>. У меня есть опыт <span class="highlight">жизни и работы за границей</span> (Южная Корея и Дания), который непосредственно влияет на то, как я преподаю язык.</p>
+                    <p><span class="highlight">Мои ученики переезжают за границу, находят там работу и поступают в лучшие зарубежные вузы.</span></p>
+                    <p>Я знаю, как помочь вам <span class="highlight">использовать английский</span>, чтобы <span class="highlight">открывать возможности</span> по всему миру и <span class="highlight">говорить на английском уверенно и без страха</span> ошибиться.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Тарифы и цены</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>1 месяц</h3>
+                    <div class="price">30,990 ₸</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>✔ 4 групповых сессии</li>
+                            <li>✔ Speaking buddy-сессии</li>
+                            <li>✔ Доступ к платформе</li>
+                            <li>✔ Карточки Quizlet</li>
+                        </ul>
+                    </div>
+                    <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="pricing-button">Записаться</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>2 месяца</h3>
+                    <div class="price">56,990 ₸</div>
+                    <div class="savings">💸 Экономия: 4,990 ₸</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>✔ 8 групповых сессий</li>
+                            <li>✔ Speaking buddy-сессии</li>
+                            <li>✔ Доступ к платформе</li>
+                            <li>✔ Карточки Quizlet</li>
+                        </ul>
+                    </div>
+                    <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="pricing-button">Записаться</a>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="popular-badge">⭐ Самый популярный</div>
+                    <h3>3 месяца</h3>
+                    <div class="price">72,990 ₸</div>
+                    <div class="savings">💸 Экономия: 19,980 ₸</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li>✔ 12 групповых сессий</li>
+                            <li>✔ Speaking buddy-сессии</li>
+                            <li>✔ Доступ к платформе</li>
+                            <li>✔ Карточки Quizlet</li>
+                            <li>✔ <strong>Максимальная выгода</strong></li>
+                        </ul>
+                    </div>
+                    <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="pricing-button">Записаться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="motivation">
+        <div class="container">
+            <h2 class="section-title">Система мотивации</h2>
+            <div class="motivation-grid">
+                <div class="motivation-card">
+                    <h3>🎁 Призы для активных</h3>
+                    <p>Книги на английском, сертификаты в кофейни или полезные канцелярские принадлежности — для тех, кто выполняет все задания и посещает сессии</p>
+                </div>
+                <div class="motivation-card">
+                    <h3>🌱 Community-элемент</h3>
+                    <p>Оффлайн-встречи в Алматы и Астане со мной, новые знакомства и живая практика, чтобы превратить изучение английского из «обязаловки» в удовольствие и регулярное общение с интересными людьми</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="topics">
+        <div class="container">
+            <h2 class="section-title">Темы предстоящего месяца</h2>
+            <div class="topics-list">
+                <div class="topic-item">
+                    <div class="topic-emoji">🤖</div>
+                    <div class="topic-text">How will AI change the way we study and work in the next 5 years?</div>
+                </div>
+                <div class="topic-item">
+                    <div class="topic-emoji">😰</div>
+                    <div class="topic-text">Why chasing 'balance' in life might be making us more stressed?</div>
+                </div>
+                <div class="topic-item">
+                    <div class="topic-emoji">💭</div>
+                    <div class="topic-text">Freedom vs Stability: If Money Didn't Matter, What Would You Choose?</div>
+                </div>
+                <div class="topic-item">
+                    <div class="topic-emoji">😔</div>
+                    <div class="topic-text">The Loneliness Epidemic: Has Social Media Made Us More Connected or More Isolated?</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Частые вопросы</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>❓ Что если я пропущу занятие?</h3>
+                    <div class="faq-answer">
+                        <p>Не страшно! Вы получите запись сессии + все материалы, чтобы догнать группу.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3>❓ У меня мало времени, успею ли я участвовать?</h3>
+                    <div class="faq-answer">
+                        <p>Да! Разговорные сессии проходят по выходным, а speaking buddy-встречи можно назначить в удобный день и время. Даже 15 минут в неделю помогут вам не терять практику.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3>❓ Можно ли отменять speaking buddy-сессии?</h3>
+                    <div class="faq-answer">
+                        <p>Да, они по желанию. Вы сами решаете, хотите ли вы встречаться на этой неделе.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3>❓ Что делать, если я стесняюсь говорить?</h3>
+                    <div class="faq-answer">
+                        <p>Наш формат построен так, чтобы вы постепенно привыкали к разговору. Никаких экзаменов — только поддерживающая атмосфера и практика.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3>❓ А если я не из Алматы или Астаны?</h3>
+                    <div class="faq-answer">
+                        <p>Онлайн-формат доступен из любой точки мира. Оффлайн-встречи — приятный бонус для тех, кто живёт в этих городах.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="signup">
+        <div class="container">
+            <h2 class="section-title" style="color: #FFF9E8;">Готовы начать говорить свободно?</h2>
+            <p style="font-size: 1.2em; margin-bottom: 40px;">Заполните анкету — и присоединяйтесь к Speaking Booster Community. <strong>Старт ближайшего потока: 6 октября.</strong></p>
+            <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="form-button">Заполнить анкету</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Speaking Booster Community. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .pricing-card, .motivation-card, .faq-item, .topic-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
