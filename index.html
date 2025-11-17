@@ -573,6 +573,93 @@
 .dot:hover {
     background: rgba(255, 249, 232, 0.6);
 }
+        .screenshots {
+    background: white;
+}
+
+.screenshot-carousel {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.screenshot-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.screenshot-item {
+    min-width: 100%;
+    padding: 0 15px;
+}
+
+.screenshot-image {
+    width: 100%;
+    max-height: 500px;
+    border-radius: 15px;
+    object-fit: contain;
+    box-shadow: 0 10px 40px rgba(51, 60, 66, 0.2);
+}
+
+.screenshot-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.screenshot-arrow {
+    background: #649298;
+    border: none;
+    color: #FFF9E8;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.5em;
+    font-weight: bold;
+    user-select: none;
+}
+
+.screenshot-arrow:hover {
+    background: #333C42;
+    transform: scale(1.1);
+}
+
+.screenshot-arrow:active {
+    transform: scale(0.95);
+}
+
+.screenshot-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.screenshot-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(100, 146, 152, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    padding: 0;
+}
+
+.screenshot-dot.active {
+    background: #649298;
+    transform: scale(1.3);
+}
+
+.screenshot-dot:hover {
+    background: rgba(100, 146, 152, 0.6);
+}
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -782,7 +869,35 @@
             </div>
         </div>
     </section>
+<section class="screenshots">
+    <div class="container">
+        <h2 class="section-title">Наши сессии 🎥</h2>
+        <div class="screenshot-carousel">
+            <div class="screenshot-track" id="screenshotTrack">
+                <!-- Скриншот 1 -->
+                <div class="screenshot-item">
+                    <img src="https://i.ibb.co/8DLcNRb8/IMG-4283.png" alt="Сессия 1" class="screenshot-image">
+                </div>
 
+                <!-- Скриншот 2 -->
+                <div class="screenshot-item">
+                    <img src="https://i.ibb.co/vxgjw9WC/IMG-4286.png" alt="Сессия 2" class="screenshot-image">
+                </div>
+
+                <!-- Скриншот 3 -->
+                <div class="screenshot-item">
+                    <img src="https://i.ibb.co/vxnXcZyW/IMG-4285.png" alt="Сессия 3" class="screenshot-image">
+                </div>
+            </div>
+
+            <div class="screenshot-controls">
+                <button class="screenshot-arrow" id="prevScreenshot">‹</button>
+                <div class="screenshot-dots" id="screenshotDots"></div>
+                <button class="screenshot-arrow" id="nextScreenshot">›</button>
+            </div>
+        </div>
+    </div>
+</section>
     <section class="faq">
         <div class="container">
             <h2 class="section-title">Частые вопросы</h2>
@@ -923,11 +1038,48 @@ function prevTestimonial() {
 
 prevTestimonialBtn.addEventListener('click', prevTestimonial);
 nextTestimonialBtn.addEventListener('click', nextTestimonial);
+let currentScreenshot = 0;
+const screenshotTrack = document.getElementById('screenshotTrack');
+const screenshotItems = document.querySelectorAll('.screenshot-item');
+const screenshotDotsContainer = document.getElementById('screenshotDots');
+const prevScreenshotBtn = document.getElementById('prevScreenshot');
+const nextScreenshotBtn = document.getElementById('nextScreenshot');
 
+// Создаём точки для скриншотов
+screenshotItems.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'screenshot-dot';
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToScreenshot(index));
+    screenshotDotsContainer.appendChild(dot);
+});
 
+function goToScreenshot(index) {
+    currentScreenshot = index;
+    screenshotTrack.style.transform = `translateX(-${currentScreenshot * 100}%)`;
+    
+    const dots = screenshotDotsContainer.querySelectorAll('.screenshot-dot');
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentScreenshot);
+    });
+}
+
+function nextScreenshot() {
+    currentScreenshot = (currentScreenshot + 1) % screenshotItems.length;
+    goToScreenshot(currentScreenshot);
+}
+
+function prevScreenshot() {
+    currentScreenshot = (currentScreenshot - 1 + screenshotItems.length) % screenshotItems.length;
+    goToScreenshot(currentScreenshot);
+}
+
+prevScreenshotBtn.addEventListener('click', prevScreenshot);
+nextScreenshotBtn.addEventListener('click', nextScreenshot);
     </script>
 </body>
 </html>
+
 
 
 
