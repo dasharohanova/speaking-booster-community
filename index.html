@@ -847,6 +847,43 @@
     color: #333C42;
     font-weight: 500;
 }
+        .bonus-highlight {
+    background: linear-gradient(135deg, #649298 0%, #333C42 100%);
+    color: #FFF9E8;
+    padding: 40px;
+    border-radius: 25px;
+    margin-top: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bonus-highlight h3 {
+    font-size: 2em;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.bonus-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bonus-item {
+    font-size: 1.15em;
+    line-height: 1.7;
+    padding-left: 30px;
+    position: relative;
+}
+
+.bonus-item::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+    font-size: 1.3em;
+}
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -908,6 +945,13 @@
 .reason-icon {
     font-size: 3em;
 }
+            .bonus-highlight {
+        padding: 30px;
+    }
+
+    .bonus-highlight h3 {
+        font-size: 1.6em;
+    }
         }
     </style>
 </head>
@@ -1020,8 +1064,17 @@
                 <p>Призы за активность (книги, сертификаты в кофейни), оффлайн-встречи в Алматы и Астане, приглашённые спикеры. Английский превращается из обязаловки в удовольствие.</p>
             </div>
         </div>
+        <div class="bonus-highlight">
+                <h3>🎁 Бонусы для участников</h3>
+                <div class="bonus-list">
+                    <div class="bonus-item">1 встреча с приглашённым спикером + Q&A сессия каждый месяц</div>
+                    <div class="bonus-item">Призы за активность (книги на английском, сертификаты в кофейни, канцелярия)</div>
+                    <div class="bonus-item">Оффлайн-встречи в Алматы и Астане для нетворкинга</div>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+</section>  
     
     <section class="testimonials">
     <div class="container">
@@ -1417,6 +1470,7 @@ nextScreenshotBtn.addEventListener('click', nextScreenshot);
     </script>
 </body>
 </html>
+
 
 
 
