@@ -668,6 +668,75 @@
 .screenshot-dot:hover {
     background: rgba(100, 146, 152, 0.6);
 }
+        .transformation {
+    background: white;
+}
+
+.transformation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.transformation-column {
+    background: #FFF9E8;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(51, 60, 66, 0.1);
+    transition: all 0.3s ease;
+}
+
+.transformation-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(51, 60, 66, 0.15);
+}
+
+.transformation-column h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.before h3 {
+    color: #CA694B;
+}
+
+.after h3 {
+    color: #649298;
+}
+
+.transformation-column ul {
+    list-style: none;
+}
+
+.transformation-column li {
+    padding: 15px 0;
+    font-size: 1.15em;
+    line-height: 1.7;
+    border-bottom: 1px solid rgba(51, 60, 66, 0.1);
+    color: #333C42;
+    font-weight: 500;
+}
+
+.transformation-column li:last-child {
+    border-bottom: none;
+}
+
+.transformation-column li:before {
+    margin-right: 12px;
+    font-size: 1.3em;
+}
+
+.before li:before {
+    content: '😔';
+}
+
+.after li:before {
+    content: '✨';
+}
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -691,6 +760,18 @@
                 max-width: 300px;
                 margin: 0 auto;
             }
+            .transformation-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.transformation-column {
+    padding: 30px;
+}
+
+.transformation-column h3 {
+    font-size: 1.6em;
+}
         }
     </style>
 </head>
@@ -744,7 +825,35 @@
         </div>
     </section>
     
-<section class="testimonials">
+    <section class="transformation">
+    <div class="container">
+        <h2 class="section-title">Your transformation</h2>
+        <div class="transformation-grid">
+            <div class="transformation-column before">
+                <h3>До Speaking Booster 😔</h3>
+                <ul>
+                    <li>Понимаю английский, но боюсь говорить</li>
+                    <li>Постоянно перевожу в голове</li>
+                    <li>Забываю слова в нужный момент</li>
+                    <li>Избегаю разговоров с носителями</li>
+                    <li>Учу английский годами, но не вижу прогресса</li>
+                </ul>
+            </div>
+            <div class="transformation-column after">
+                <h3>После Speaking Booster ✨</h3>
+                <ul>
+                    <li>Говорю свободно и уверенно</li>
+                    <li>Думаю на английском, а не перевожу</li>
+                    <li>Легко подбираю нужные слова</li>
+                    <li>С удовольствием общаюсь с людьми со всего мира</li>
+                    <li>Вижу реальный прогресс каждую неделю</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <section class="testimonials">
     <div class="container">
         <h2 class="section-title" style="color: #FFF9E8;">Отзывы участников 💬</h2>
         <div class="testimonial-carousel">
@@ -1098,6 +1207,7 @@ nextScreenshotBtn.addEventListener('click', nextScreenshot);
     </script>
 </body>
 </html>
+
 
 
 
