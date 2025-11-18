@@ -737,6 +737,73 @@
 .after li:before {
     content: '✨';
 }
+        .how-it-works {
+    background: linear-gradient(135deg, #FFF9E8 0%, #e8dcc8 100%);
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.step-card {
+    background: white;
+    padding: 40px 35px;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(51, 60, 66, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 50px rgba(51, 60, 66, 0.15);
+}
+
+.step-number {
+    font-size: 4em;
+    font-weight: bold;
+    color: #649298;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.step-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    color: #333C42;
+    text-align: center;
+    font-weight: 700;
+}
+
+.step-content {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: #333C42;
+    font-weight: 500;
+}
+
+.step-content p {
+    margin-bottom: 15px;
+}
+
+.checkmark {
+    color: #649298;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.step-description {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #FFF9E8;
+    font-size: 1em;
+    line-height: 1.7;
+    color: #555;
+}
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -771,6 +838,21 @@
 
 .transformation-column h3 {
     font-size: 1.6em;
+}
+            .steps-grid {
+    grid-template-columns: 1fr;
+}
+
+.step-card {
+    padding: 30px 25px;
+}
+
+.step-number {
+    font-size: 3em;
+}
+
+.step-card h3 {
+    font-size: 1.3em;
 }
         }
     </style>
@@ -883,6 +965,46 @@
                 <button class="carousel-arrow" id="prevTestimonial">‹</button>
                 <div class="carousel-dots" id="testimonialDots"></div>
                 <button class="carousel-arrow" id="nextTestimonial">›</button>
+            </div>
+        </div>
+    </div>
+</section>
+    <section class="how-it-works">
+    <div class="container">
+        <h2 class="section-title">Как это работает?</h2>
+        <div class="steps-grid">
+            <!-- Шаг 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Изучаете материал</h3>
+                <div class="step-content">
+                    <p><span class="checkmark">✅</span>Доступ к онлайн-платформе с ключевой лексикой и идеями по теме недели</p>
+                    <p><span class="checkmark">✅</span>Карточки Quizlet для быстрого запоминания новых слов и выражений</p>
+                </div>
+            </div>
+
+            <!-- Шаг 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Готовитесь с buddy</h3>
+                <div class="step-content">
+                    <p><span class="checkmark">✅</span>4 speaking buddy-сессии (по желанию, в удобное для вас время)</p>
+                    <div class="step-description">
+                        Проговариваете лексику, обсуждаете вопросы недели и разгоняете речь перед групповой встречей в комфортной обстановке 1 на 1
+                    </div>
+                </div>
+            </div>
+
+            <!-- Шаг 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Практикуете в группе</h3>
+                <div class="step-content">
+                    <p><span class="checkmark">✅</span>4 живых групповых сессии (90 мин каждая, 5-6 человек, по выходным)</p>
+                    <div class="step-description">
+                        Глубокие разговоры с Катей и другими участниками, мини-дискуссии и уверенная практика, чтобы звучать естественно и свободно
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1207,6 +1329,7 @@ nextScreenshotBtn.addEventListener('click', nextScreenshot);
     </script>
 </body>
 </html>
+
 
 
 
