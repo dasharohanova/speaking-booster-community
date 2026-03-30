@@ -1,1726 +1,988 @@
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speaking Booster Community - Разговорный клуб английского</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-dark: #333C42;
-            --primary-teal: #649298;
-            --accent-coral: #CA694B;
-            --light-cream: #FFF9E8;
-            --gradient-bg: linear-gradient(135deg, #e8dcc8 0%, #f5eedc 100%);
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.7;
-            color: var(--primary-dark);
-            overflow-x: hidden;
-            background: #ffffff;
-        }
-
-        /* Hero Section - Enhanced */
-        .hero {
-            background: linear-gradient(135deg, #2a3338 0%, #4a7780 50%, #649298 100%);
-            color: var(--light-cream);
-            padding: 120px 20px 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255, 249, 232, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(100, 146, 152, 0.1) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 3.5em;
-            font-weight: 800;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.25em;
-            margin-bottom: 35px;
-            animation: fadeInUp 1s ease 0.2s both;
-            font-weight: 500;
-            line-height: 1.6;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 20px 50px;
-            background: var(--accent-coral);
-            color: var(--light-cream);
-            text-decoration: none;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1.15em;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: fadeInUp 1s ease 0.4s both;
-            box-shadow: 0 15px 40px rgba(202, 105, 75, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(202, 105, 75, 0.5);
-            background: #b85938;
-        }
-
-        /* Container & Sections */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 30px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.75em;
-            font-weight: 800;
-            margin-bottom: 60px;
-            color: var(--primary-dark);
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-coral), var(--primary-teal));
-            border-radius: 2px;
-        }
-
-        /* Transformation Section - Enhanced */
-        .transformation {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        }
-
-        .transformation-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .transformation-column {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 30px;
-            box-shadow: 0 15px 50px rgba(51, 60, 66, 0.08);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .transformation-column::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--accent-coral), var(--primary-teal));
-            transform: scaleX(0);
-            transition: transform 0.5s ease;
-        }
-
-        .transformation-column:hover::before {
-            transform: scaleX(1);
-        }
-
-        .transformation-column:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(51, 60, 66, 0.12);
-        }
-
-        .transformation-column h3 {
-            font-size: 2.2em;
-            margin-bottom: 35px;
-            text-align: center;
-            font-weight: 800;
-            letter-spacing: -0.01em;
-        }
-
-        .before h3 {
-            color: var(--accent-coral);
-        }
-
-        .after h3 {
-            color: var(--primary-teal);
-        }
-
-        .transformation-column ul {
-            list-style: none;
-        }
-
-        .transformation-column li {
-            padding: 18px 0;
-            font-size: 1.1em;
-            line-height: 1.7;
-            border-bottom: 1px solid rgba(51, 60, 66, 0.06);
-            color: var(--primary-dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding-left: 10px;
-        }
-
-        .transformation-column li:hover {
-            padding-left: 20px;
-            background: rgba(100, 146, 152, 0.03);
-            border-radius: 8px;
-        }
-
-        .transformation-column li:last-child {
-            border-bottom: none;
-        }
-
-        .transformation-column li:before {
-            margin-right: 15px;
-            font-size: 1.4em;
-        }
-
-        .before li:before {
-            content: '😔';
-        }
-
-        .after li:before {
-            content: '✨';
-        }
-
-        /* Why It Works - Enhanced */
-        .why-it-works {
-            background: var(--gradient-bg);
-        }
-
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .reason-card {
-            background: white;
-            padding: 45px 40px;
-            border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(51, 60, 66, 0.06);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            border: 2px solid transparent;
-        }
-
-        .reason-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 25px;
-            padding: 2px;
-            background: linear-gradient(135deg, var(--primary-teal), var(--accent-coral));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .reason-card:hover::before {
-            opacity: 1;
-        }
-
-        .reason-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 60px rgba(51, 60, 66, 0.12);
-        }
-
-        .reason-icon {
-            font-size: 4em;
-            margin-bottom: 25px;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .reason-card:hover .reason-icon {
-            animation: none;
-            transform: scale(1.2) rotate(5deg);
-            transition: transform 0.4s ease;
-        }
-
-        .reason-card h3 {
-            font-size: 1.5em;
-            margin-bottom: 18px;
-            color: var(--primary-teal);
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        .reason-card p {
-            font-size: 1.05em;
-            line-height: 1.8;
-            color: #555;
-            font-weight: 500;
-        }
-
-        /* Bonus Highlight - Enhanced */
-        .bonus-highlight {
-            background: linear-gradient(135deg, #4a7780 0%, #2a3338 100%);
-            color: var(--light-cream);
-            padding: 50px;
-            border-radius: 30px;
-            margin-top: 50px;
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 20px 60px rgba(42, 51, 56, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bonus-highlight::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,249,232,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .bonus-highlight h3 {
-            font-size: 2.2em;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 800;
-            position: relative;
-            z-index: 1;
-        }
-
-        .bonus-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .bonus-item {
-            font-size: 1.15em;
-            line-height: 1.8;
-            padding: 20px 20px 20px 50px;
-            position: relative;
-            background: rgba(255, 249, 232, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .bonus-item:hover {
-            background: rgba(255, 249, 232, 0.1);
-            transform: translateX(10px);
-        }
-
-        .bonus-item::before {
-            content: '✅';
-            position: absolute;
-            left: 15px;
-            font-size: 1.5em;
-        }
-
-        /* Testimonials - Enhanced */
-        .testimonials {
-            background: linear-gradient(135deg, #4a7780 0%, #2a3338 100%);
-            color: var(--light-cream);
-        }
-
-        .testimonial-carousel {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            background: rgba(255, 249, 232, 0.08);
-            padding: 50px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-        }
-
-        .testimonial-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .testimonial-card {
-            min-width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .testimonial-image {
-            width: 100%;
-            max-height: 500px;
-            border-radius: 20px;
-            object-fit: contain;
-            background: transparent;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-top: 45px;
-        }
-
-        .carousel-arrow {
-            background: rgba(255, 249, 232, 0.15);
-            border: 2px solid rgba(255, 249, 232, 0.3);
-            color: var(--light-cream);
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.8em;
-            font-weight: bold;
-            user-select: none;
-        }
-
-        .carousel-arrow:hover {
-            background: rgba(255, 249, 232, 0.3);
-            transform: scale(1.15);
-            border-color: rgba(255, 249, 232, 0.5);
-        }
-
-        .carousel-arrow:active {
-            transform: scale(0.95);
-        }
-
-        .carousel-dots {
-            display: flex;
-            gap: 12px;
-        }
-
-        .dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(255, 249, 232, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            padding: 0;
-        }
-
-        .dot.active {
-            background: var(--light-cream);
-            transform: scale(1.4);
-            box-shadow: 0 0 15px rgba(255, 249, 232, 0.5);
-        }
-
-        .dot:hover {
-            background: rgba(255, 249, 232, 0.6);
-            transform: scale(1.2);
-        }
-
-        /* Steps Section - Enhanced */
-        .how-it-works {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .step-card {
-            background: white;
-            padding: 45px 35px;
-            border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(51, 60, 66, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            border-top: 4px solid var(--primary-teal);
-        }
-
-        .step-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(51, 60, 66, 0.15);
-            border-top-color: var(--accent-coral);
-        }
-
-        .step-number {
-            font-size: 5em;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-teal), var(--accent-coral));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 25px;
-            text-align: center;
-            line-height: 1;
-        }
-
-        .step-card h3 {
-            font-size: 1.6em;
-            margin-bottom: 25px;
-            color: var(--primary-dark);
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .step-content {
-            font-size: 1.05em;
-            line-height: 1.8;
-            color: #555;
-            font-weight: 500;
-        }
-
-        .step-content p {
-            margin-bottom: 15px;
-        }
-
-        .checkmark {
-            color: var(--primary-teal);
-            margin-right: 10px;
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-
-        .step-description {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px solid rgba(100, 146, 152, 0.1);
-            font-size: 1em;
-            line-height: 1.8;
-            color: #666;
-            font-style: italic;
-        }
-
-        /* About Me - Enhanced */
-        .about-me {
-            background: var(--gradient-bg);
-        }
-
-        .about-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: white;
-            padding: 60px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(51, 60, 66, 0.1);
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 100%;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(51, 60, 66, 0.25);
-            transition: transform 0.4s ease;
-        }
-
-        .about-image:hover {
-            transform: scale(1.05) rotate(2deg);
-        }
-
-        .about-text {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .about-text p {
-            font-size: 1.15em;
-            line-height: 1.9;
-            color: #555;
-            font-weight: 500;
-        }
-
-        .highlight {
-            color: var(--accent-coral);
-            font-weight: 700;
-        }
-
-        /* Topics - Enhanced */
-        .topics {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        }
-
-        .topics-list {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            gap: 25px;
-        }
-
-        .topic-item {
-            background: white;
-            padding: 30px 35px;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(51, 60, 66, 0.06);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            border-left: 4px solid var(--primary-teal);
-        }
-
-        .topic-item:hover {
-            transform: translateX(15px);
-            box-shadow: 0 15px 50px rgba(51, 60, 66, 0.12);
-            border-left-color: var(--accent-coral);
-        }
-
-        .topic-emoji {
-            font-size: 3em;
-            flex-shrink: 0;
-            transition: transform 0.3s ease;
-        }
-
-        .topic-item:hover .topic-emoji {
-            transform: scale(1.3) rotate(10deg);
-        }
-
-        .topic-text {
-            font-size: 1.15em;
-            color: var(--primary-dark);
-            line-height: 1.7;
-            font-weight: 600;
-        }
-
-        /* Screenshots - Enhanced */
-        .screenshots {
-            background: var(--gradient-bg);
-        }
-
-        .screenshot-carousel {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            background: white;
-            padding: 50px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(51, 60, 66, 0.1);
-        }
-
-        .screenshot-track {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .screenshot-item {
-            min-width: 100%;
-            padding: 0 20px;
-        }
-
-        .screenshot-image {
-            width: 100%;
-            max-height: 550px;
-            border-radius: 20px;
-            object-fit: contain;
-            box-shadow: 0 15px 50px rgba(51, 60, 66, 0.15);
-        }
-
-        .screenshot-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-top: 45px;
-        }
-
-        .screenshot-arrow {
-            background: var(--primary-teal);
-            border: none;
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.8em;
-            font-weight: bold;
-            user-select: none;
-            box-shadow: 0 8px 25px rgba(100, 146, 152, 0.3);
-        }
-
-        .screenshot-arrow:hover {
-            background: var(--accent-coral);
-            transform: scale(1.15);
-            box-shadow: 0 12px 35px rgba(202, 105, 75, 0.4);
-        }
-
-        .screenshot-arrow:active {
-            transform: scale(0.95);
-        }
-
-        .screenshot-dots {
-            display: flex;
-            gap: 12px;
-        }
-
-        .screenshot-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(100, 146, 152, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            padding: 0;
-        }
-
-        .screenshot-dot.active {
-            background: var(--primary-teal);
-            transform: scale(1.4);
-            box-shadow: 0 0 15px rgba(100, 146, 152, 0.5);
-        }
-
-        .screenshot-dot:hover {
-            background: rgba(100, 146, 152, 0.6);
-            transform: scale(1.2);
-        }
-
-        /* Pricing - Enhanced */
-        .pricing {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: white;
-            border: 3px solid rgba(100, 146, 152, 0.2);
-            border-radius: 30px;
-            padding: 45px 35px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            border-color: var(--primary-teal);
-            box-shadow: 0 25px 70px rgba(100, 146, 152, 0.25);
-        }
-
-        .pricing-card.popular {
-            border-color: var(--primary-teal);
-            box-shadow: 0 15px 50px rgba(100, 146, 152, 0.2);
-            border-width: 4px;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--primary-teal), var(--accent-coral));
-            color: white;
-            padding: 8px 25px;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 0.95em;
-            box-shadow: 0 5px 20px rgba(100, 146, 152, 0.4);
-        }
-
-        .pricing-card h3 {
-            font-size: 2em;
-            margin-bottom: 15px;
-            color: var(--primary-dark);
-            font-weight: 800;
-        }
-
-        .price {
-            font-size: 3em;
-            color: var(--primary-teal);
-            font-weight: 800;
-            margin: 25px 0;
-            line-height: 1;
-        }
-
-        .savings {
-            color: var(--accent-coral);
-            font-weight: 700;
-            margin-bottom: 25px;
-            font-size: 1.1em;
-        }
-
-        .pricing-features {
-            text-align: left;
-            margin: 25px 0;
-        }
-
-        .pricing-features li {
-            list-style: none;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(100, 146, 152, 0.1);
-            color: #555;
-            font-weight: 500;
-            font-size: 1.05em;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-button {
-            display: inline-block;
-            padding: 18px 40px;
-            background: var(--accent-coral);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            margin-top: 25px;
-            font-size: 1.05em;
-            box-shadow: 0 10px 30px rgba(202, 105, 75, 0.3);
-        }
-
-        .pricing-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(202, 105, 75, 0.4);
-            background: #b85938;
-        }
-
-        /* FAQ - Enhanced */
-        .faq {
-            background: var(--gradient-bg);
-        }
-
-        .faq-grid {
-            display: grid;
-            gap: 25px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: white;
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(51, 60, 66, 0.06);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border-left: 4px solid transparent;
-        }
-
-        .faq-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(51, 60, 66, 0.12);
-            border-left-color: var(--primary-teal);
-        }
-
-        .faq-item.active {
-            border-left-color: var(--accent-coral);
-        }
-
-        .faq-item h3 {
-            font-size: 1.35em;
-            color: var(--primary-teal);
-            margin-bottom: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .faq-item h3::after {
-            content: '+';
-            font-size: 1.8em;
-            color: var(--primary-teal);
-            transition: transform 0.3s ease;
-            font-weight: 300;
-        }
-
-        .faq-item.active h3::after {
-            transform: rotate(45deg);
-            color: var(--accent-coral);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            margin-top: 20px;
-        }
-
-        .faq-item p {
-            color: #555;
-            line-height: 1.8;
-            font-size: 1.05em;
-            font-weight: 500;
-        }
-
-        /* Form Section - Enhanced */
-        .form-section {
-            background: linear-gradient(135deg, #2a3338 0%, #4a7780 100%);
-            color: var(--light-cream);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding: 80px 20px;
-        }
-
-        .form-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,249,232,0.05) 0%, transparent 70%);
-            animation: rotate 25s linear infinite;
-        }
-
-        .form-section .container {
-            position: relative;
-            z-index: 1;
-            padding: 60px 30px;
-        }
-
-        .form-button {
-            display: inline-block;
-            padding: 22px 55px;
-            background: var(--light-cream);
-            color: var(--accent-coral);
-            text-decoration: none;
-            border-radius: 60px;
-            font-weight: 800;
-            font-size: 1.25em;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 15px 50px rgba(255, 249, 232, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .form-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(202, 105, 75, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .form-button:hover::before {
-            left: 100%;
-        }
-
-        .form-button:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 20px 60px rgba(255, 249, 232, 0.5);
-            background: #fffdf5;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-dark);
-            color: var(--light-cream);
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 1.05em;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .reasons-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .pricing-cards {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                padding: 50px 40px;
-            }
-            
-            .about-image {
-                max-width: 350px;
-                margin: 0 auto;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-            
-            .hero {
-                padding: 80px 20px 60px;
-            }
-            
-            .hero p {
-                font-size: 1.1em;
-            }
-
-            .section-title {
-                font-size: 2.2em;
-                margin-bottom: 40px;
-            }
-            
-            .container {
-                padding: 60px 20px;
-            }
-
-            .transformation-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .transformation-column {
-                padding: 35px 30px;
-            }
-
-            .transformation-column h3 {
-                font-size: 1.8em;
-                margin-bottom: 25px;
-            }
-            
-            .transformation-column li {
-                font-size: 1.05em;
-                padding: 15px 0;
-            }
-
-            .about-content {
-                padding: 40px 30px;
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
-
-            .about-image {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .step-card {
-                padding: 35px 28px;
-            }
-
-            .step-number {
-                font-size: 4em;
-            }
-
-            .reason-card {
-                padding: 35px 30px;
-            }
-
-            .reason-icon {
-                font-size: 3.5em;
-            }
-
-            .bonus-highlight {
-                padding: 35px 25px;
-            }
-
-            .bonus-highlight h3 {
-                font-size: 1.8em;
-            }
-            
-            .testimonial-carousel,
-            .screenshot-carousel {
-                padding: 35px 25px;
-            }
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .cta-button,
-        .form-button,
-        .pricing-button,
-        .carousel-arrow,
-        .screenshot-arrow,
-        .dot,
-        .screenshot-dot,
-        .faq-item {
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-        }
-
-        /* Selection Color */
-        ::selection {
-            background: var(--primary-teal);
-            color: white;
-        }
-
-        /* Accessibility */
-        .carousel-arrow:focus,
-        .screenshot-arrow:focus,
-        .dot:focus,
-        .screenshot-dot:focus {
-            outline: 2px solid var(--primary-teal);
-            outline-offset: 2px;
-        }
-
-        /* Prevent layout shift on image load */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        @keyframes float1 {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking Booster Community</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --teal:#649298;
+  --teal-dark:#4a7780;
+  --coral:#CA694B;
+  --cream:#FFF9E8;
+  --dark:#1E2529;
+  --mid:#333C42;
+  --muted:#6B7B83;
+  --bg:#F7F4EF;
 }
-@keyframes float2 {
-  0%, 100% { transform: translateY(-6px); }
-  50% { transform: translateY(4px); }
+html{scroll-behavior:smooth;}
+body{font-family:'Onest',sans-serif;color:var(--dark);background:#fff;overflow-x:hidden;}
+
+/* ─── HERO ─── */
+.hero{
+  background:var(--dark);
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  padding:0 20px;
+  position:relative;
+  overflow:hidden;
 }
-@keyframes float3 {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+.hero-noise{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.6;pointer-events:none;
 }
-.card1 { animation: float1 4s ease-in-out infinite; }
-.card2 { animation: float2 4.5s ease-in-out infinite; }
-.card3 { animation: float3 3.8s ease-in-out infinite; }
+.hero-glow{
+  position:absolute;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(100,146,152,0.25) 0%,transparent 70%);
+  top:-100px;right:-150px;
+  pointer-events:none;
 }
-    </style>
+.hero-glow2{
+  position:absolute;
+  width:300px;height:300px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(202,105,75,0.15) 0%,transparent 70%);
+  bottom:100px;left:-80px;
+  pointer-events:none;
+}
+.hero-nav{
+  position:relative;z-index:2;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 0;
+}
+.hero-body{
+  position:relative;z-index:2;
+  flex:1;display:flex;flex-direction:column;
+  justify-content:center;
+  padding:60px 0 30px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(202,105,75,0.12);
+  border:1px solid rgba(202,105,75,0.25);
+  color:var(--coral);
+  padding:7px 14px;border-radius:50px;
+  font-size:12px;font-weight:600;
+  margin-bottom:24px;
+  width:fit-content;
+}
+.hero-eyebrow-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--coral);
+  animation:blink 1.5s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+h1{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(26px,7vw,52px);
+  font-weight:900;
+  line-height:1.1;
+  color:#fff;
+  margin-bottom:20px;
+  letter-spacing:-0.02em;
+}
+h1 span{color:var(--teal);}
+.hero-sub{
+  font-size:16px;
+  color:rgba(255,249,232,0.7);
+  font-weight:500;
+  line-height:1.7;
+  margin-bottom:36px;
+  max-width:480px;
+}
+.hero-sub strong{color:var(--cream);font-weight:700;}
+.hero-cta-row{
+  display:flex;flex-direction:column;gap:12px;
+  margin-bottom:40px;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:18px 28px;
+  background:var(--coral);
+  color:#fff;
+  border-radius:16px;
+  font-family:'Onest',sans-serif;
+  font-size:15px;font-weight:700;
+  text-decoration:none;
+  transition:all 0.3s ease;
+  box-shadow:0 12px 35px rgba(202,105,75,0.4);
+  width:100%;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 45px rgba(202,105,75,0.5);}
+.btn-secondary{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:18px 28px;
+  background:transparent;
+  color:var(--cream);
+  border:1.5px solid rgba(255,249,232,0.2);
+  border-radius:16px;
+  font-family:'Onest',sans-serif;
+  font-size:15px;font-weight:600;
+  text-decoration:none;
+  transition:all 0.3s ease;
+  width:100%;
+}
+.btn-secondary:hover{border-color:rgba(255,249,232,0.5);background:rgba(255,249,232,0.05);}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  background:rgba(255,249,232,0.06);
+  border:1px solid rgba(255,249,232,0.08);
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:32px;
+}
+.hero-stat{
+  padding:18px 12px;
+  text-align:center;
+  background:rgba(255,249,232,0.03);
+}
+.hero-stat-num{
+  font-family:'Unbounded',sans-serif;
+  font-size:22px;font-weight:900;
+  color:var(--teal);
+  line-height:1;
+  margin-bottom:6px;
+}
+.hero-stat-label{
+  font-size:10px;font-weight:600;
+  color:rgba(255,249,232,0.5);
+  letter-spacing:0.04em;
+  line-height:1.3;
+}
+.hero-scroll{
+  display:flex;align-items:center;gap:10px;
+  color:rgba(255,249,232,0.3);
+  font-size:11px;font-weight:500;
+  letter-spacing:0.04em;
+  padding-bottom:20px;
+}
+.scroll-line{
+  width:40px;height:1px;
+  background:rgba(255,249,232,0.15);
+}
+
+/* ─── SECTION BASE ─── */
+section{padding:64px 20px;}
+.label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:16px;
+}
+.label::before{content:'';width:20px;height:2px;background:var(--teal);}
+h2{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(22px,5.5vw,38px);
+  font-weight:900;
+  line-height:1.15;
+  letter-spacing:-0.02em;
+  margin-bottom:8px;
+}
+.section-sub{
+  font-size:15px;color:var(--muted);
+  line-height:1.7;font-weight:500;
+  margin-bottom:36px;
+}
+
+/* ─── PROBLEM → SOLUTION (BEFORE/AFTER) ─── */
+.transform{background:var(--bg);}
+.ba-grid{display:grid;gap:16px;}
+.ba-card{
+  background:#fff;
+  border-radius:20px;
+  padding:28px 24px;
+  border:1.5px solid rgba(0,0,0,0.06);
+}
+.ba-card-head{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:20px;
+}
+.ba-icon{font-size:20px;}
+.ba-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:13px;font-weight:700;
+  letter-spacing:0.04em;
+}
+.ba-card.before .ba-title{color:var(--muted);}
+.ba-card.after .ba-title{color:var(--teal);}
+.ba-card.after{border-color:rgba(100,146,152,0.25);}
+.ba-list{display:flex;flex-direction:column;gap:12px;}
+.ba-item{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14px;font-weight:500;line-height:1.5;
+  color:#444;
+}
+.ba-item-dot{
+  width:22px;height:22px;border-radius:50%;
+  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;margin-top:1px;
+}
+.before .ba-item-dot{background:rgba(107,123,131,0.12);color:var(--muted);}
+.after .ba-item-dot{background:rgba(100,146,152,0.15);color:var(--teal);}
+
+/* ─── HOW IT WORKS ─── */
+.how{background:#fff;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{
+  display:flex;gap:20px;
+  padding:24px 0;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  position:relative;
+}
+.step:last-child{border-bottom:none;}
+.step-left{
+  display:flex;flex-direction:column;align-items:center;
+  flex-shrink:0;width:48px;
+}
+.step-num{
+  width:48px;height:48px;border-radius:14px;
+  background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Unbounded',sans-serif;
+  font-size:16px;font-weight:900;
+  color:var(--teal);
+  flex-shrink:0;
+}
+.step-line{
+  width:2px;flex:1;margin-top:8px;
+  background:linear-gradient(to bottom,rgba(100,146,152,0.3),transparent);
+  min-height:20px;
+}
+.step:last-child .step-line{display:none;}
+.step-content{flex:1;padding-top:10px;}
+.step-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:14px;font-weight:700;
+  margin-bottom:10px;line-height:1.3;
+}
+.step-desc{
+  font-size:13.5px;color:var(--muted);
+  line-height:1.7;font-weight:500;
+  margin-bottom:12px;
+}
+.step-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{
+  padding:5px 12px;
+  background:var(--bg);
+  border-radius:50px;
+  font-size:11.5px;font-weight:600;
+  color:var(--mid);
+}
+
+/* ─── WHY IT WORKS ─── */
+.why{background:var(--bg);}
+.why-grid{display:grid;gap:12px;}
+.why-card{
+  background:#fff;
+  border-radius:20px;
+  padding:24px 22px;
+  display:flex;gap:16px;
+  align-items:flex-start;
+  border:1.5px solid transparent;
+  transition:border-color 0.3s;
+}
+.why-card:hover{border-color:rgba(100,146,152,0.25);}
+.why-emoji{
+  font-size:28px;line-height:1;
+  flex-shrink:0;
+  width:48px;height:48px;
+  background:var(--bg);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.why-text h3{
+  font-family:'Unbounded',sans-serif;
+  font-size:13px;font-weight:700;
+  margin-bottom:7px;line-height:1.3;
+}
+.why-text p{
+  font-size:13.5px;color:var(--muted);
+  line-height:1.65;font-weight:500;
+}
+
+/* ─── TOPICS ─── */
+.topics{background:#fff;}
+.topics-grid{
+  display:grid;
+  gap:10px;
+}
+.topic-card{
+  background:var(--bg);
+  border-radius:16px;
+  padding:18px 20px;
+  display:flex;align-items:center;gap:14px;
+  transition:all 0.25s ease;
+  border:1.5px solid transparent;
+}
+.topic-card:hover{
+  background:#fff;
+  border-color:rgba(100,146,152,0.25);
+  transform:translateX(4px);
+}
+.topic-emoji{font-size:22px;flex-shrink:0;}
+.topic-text{
+  font-size:14px;font-weight:600;
+  line-height:1.4;color:var(--dark);
+}
+
+/* ─── PRICING ─── */
+.pricing{background:var(--dark);}
+.pricing h2{color:#fff;}
+.pricing .section-sub{color:rgba(255,249,232,0.55);}
+.pricing .label{color:var(--teal);}
+.plans{display:flex;flex-direction:column;gap:12px;}
+.plan{
+  background:rgba(255,249,232,0.05);
+  border:1.5px solid rgba(255,249,232,0.1);
+  border-radius:20px;
+  padding:24px 22px;
+  position:relative;
+  transition:border-color 0.3s;
+}
+.plan:hover{border-color:rgba(100,146,152,0.4);}
+.plan.featured{
+  background:rgba(100,146,152,0.12);
+  border-color:var(--teal);
+}
+.plan-badge{
+  position:absolute;top:-12px;left:22px;
+  background:var(--teal);
+  color:#fff;
+  padding:4px 14px;
+  border-radius:50px;
+  font-size:11px;font-weight:700;
+  letter-spacing:0.04em;
+}
+.plan-header{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:16px;
+}
+.plan-name{
+  font-family:'Unbounded',sans-serif;
+  font-size:14px;font-weight:700;
+  color:#fff;
+}
+.plan-save{
+  font-size:11px;font-weight:700;
+  color:var(--coral);
+  background:rgba(202,105,75,0.15);
+  padding:4px 10px;border-radius:50px;
+}
+.plan-price{
+  font-family:'Unbounded',sans-serif;
+  font-size:26px;font-weight:900;
+  color:var(--teal);
+  margin-bottom:4px;
+  line-height:1;
+}
+.plan-per{
+  font-size:12px;color:rgba(255,249,232,0.4);
+  font-weight:500;margin-bottom:16px;
+}
+.plan-features{
+  display:flex;flex-direction:column;gap:8px;
+  margin-bottom:20px;
+}
+.plan-feat{
+  display:flex;align-items:center;gap:10px;
+  font-size:13.5px;color:rgba(255,249,232,0.75);
+  font-weight:500;
+}
+.plan-feat-dot{
+  width:18px;height:18px;border-radius:50%;
+  background:rgba(100,146,152,0.2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:9px;color:var(--teal);
+}
+.plan .btn-primary{background:var(--coral);}
+.plan.featured .btn-primary{background:var(--teal);}
+
+/* ─── TESTIMONIALS ─── */
+.reviews{background:var(--bg);}
+.review-scroll{
+  display:flex;gap:12px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:16px;
+  margin:0 -20px;padding-left:20px;padding-right:20px;
+  scrollbar-width:none;
+}
+.review-scroll::-webkit-scrollbar{display:none;}
+.review-card{
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  min-width:280px;
+  max-width:280px;
+  scroll-snap-align:start;
+  flex-shrink:0;
+  box-shadow:0 8px 30px rgba(0,0,0,0.07);
+}
+.review-card img{
+  width:100%;
+  display:block;
+  height:auto;
+}
+.review-hint{
+  text-align:center;
+  margin-top:14px;
+  font-size:11px;color:var(--muted);
+  font-weight:500;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.review-hint svg{opacity:0.4;}
+
+/* ─── ABOUT ─── */
+.about{background:#fff;}
+.about-card{
+  background:var(--dark);
+  border-radius:24px;
+  overflow:hidden;
+}
+.about-img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  display:block;
+}
+.about-body{padding:28px 24px;}
+.about-body h3{
+  font-family:'Unbounded',sans-serif;
+  font-size:16px;font-weight:900;
+  color:#fff;margin-bottom:16px;
+  line-height:1.3;
+}
+.about-body p{
+  font-size:14px;color:rgba(255,249,232,0.7);
+  line-height:1.75;font-weight:500;
+  margin-bottom:12px;
+}
+.about-body p:last-of-type{margin-bottom:20px;}
+.about-body strong{color:var(--teal);}
+.about-chips{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin-top:16px;
+}
+.chip{
+  padding:7px 14px;
+  background:rgba(100,146,152,0.15);
+  border:1px solid rgba(100,146,152,0.25);
+  border-radius:50px;
+  font-size:12px;font-weight:600;
+  color:var(--teal);
+}
+
+/* ─── DEMO CTA ─── */
+.demo{background:var(--bg);}
+.demo-card{
+  background:linear-gradient(135deg,#2a3338 0%,#3d6068 100%);
+  border-radius:24px;
+  padding:36px 24px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.demo-card::before{
+  content:'';
+  position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(100,146,152,0.25) 0%,transparent 70%);
+  pointer-events:none;
+}
+.demo-card h3{
+  font-family:'Unbounded',sans-serif;
+  font-size:18px;font-weight:900;
+  color:#fff;margin-bottom:12px;line-height:1.3;
+}
+.demo-card p{
+  font-size:14px;color:rgba(255,249,232,0.65);
+  line-height:1.7;font-weight:500;margin-bottom:28px;
+}
+.demo-pills{
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
+  margin-bottom:28px;
+}
+.demo-pill{
+  background:rgba(255,249,232,0.07);
+  border:1px solid rgba(255,249,232,0.12);
+  border-radius:50px;
+  padding:8px 16px;
+  display:flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:600;color:rgba(255,249,232,0.85);
+}
+.demo-pill-icon{font-size:15px;}
+.demo-card .btn-primary{
+  background:var(--coral);
+  max-width:320px;margin:0 auto;
+}
+
+/* ─── FAQ ─── */
+.faq{background:#fff;}
+.faq-list{display:flex;flex-direction:column;gap:8px;}
+.faq-item{
+  border:1.5px solid rgba(0,0,0,0.07);
+  border-radius:16px;
+  overflow:hidden;
+  transition:border-color 0.3s;
+}
+.faq-item.open{border-color:rgba(100,146,152,0.35);}
+.faq-q{
+  width:100%;background:none;border:none;
+  padding:18px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;cursor:pointer;text-align:left;
+  font-family:'Onest',sans-serif;
+  font-size:14px;font-weight:700;
+  color:var(--dark);
+  line-height:1.4;
+}
+.faq-icon{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:18px;font-weight:300;
+  color:var(--teal);transition:transform 0.3s ease;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.35s ease, padding 0.3s ease;
+  padding:0 20px;
+}
+.faq-item.open .faq-a{
+  max-height:300px;
+  padding-bottom:18px;
+}
+.faq-a p{
+  font-size:14px;color:var(--muted);
+  line-height:1.7;font-weight:500;
+  border-top:1px solid rgba(0,0,0,0.06);
+  padding-top:14px;
+}
+
+/* ─── FINAL CTA ─── */
+.final-cta{
+  background:var(--dark);
+  padding:64px 20px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 50%,rgba(100,146,152,0.2) 0%,transparent 50%),
+    radial-gradient(circle at 80% 20%,rgba(202,105,75,0.15) 0%,transparent 50%);
+}
+.final-cta .label{color:var(--teal);position:relative;z-index:1;margin:0 auto 16px;}
+.final-cta h2{color:#fff;position:relative;z-index:1;margin-bottom:12px;}
+.final-cta p{color:rgba(255,249,232,0.6);font-size:15px;font-weight:500;line-height:1.7;margin-bottom:32px;position:relative;z-index:1;}
+.final-cta .urgency{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(202,105,75,0.15);
+  border:1px solid rgba(202,105,75,0.3);
+  color:var(--coral);
+  padding:8px 18px;border-radius:50px;
+  font-size:12px;font-weight:700;
+  margin-bottom:24px;position:relative;z-index:1;
+  letter-spacing:0.04em;text-transform:uppercase;
+}
+.final-cta .btn-primary{
+  max-width:340px;margin:0 auto;position:relative;z-index:1;
+  font-size:16px;padding:20px 28px;
+}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--mid);
+  padding:24px 20px;
+  text-align:center;
+  font-size:12px;
+  color:rgba(255,249,232,0.3);
+  font-weight:500;
+}
+
+/* ─── DESKTOP ADJUSTMENTS ─── */
+@media(min-width:640px){
+  section{padding:80px 40px;}
+  .ba-grid{grid-template-columns:1fr 1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .hero-cta-row{flex-direction:row;}
+  .btn-primary,.btn-secondary{width:auto;}
+  .review-card{min-width:320px;max-width:320px;}
+  .demo-card{padding:48px 40px;}
+}
+@media(min-width:1024px){
+  section{padding:96px 60px;}
+  .hero{min-height:auto;padding:0 60px;}
+  .hero-body{padding:80px 0 60px;}
+  h1{font-size:56px;}
+  .ba-grid,.why-grid{gap:20px;}
+  .about-card{display:grid;grid-template-columns:380px 1fr;}
+  .about-img{aspect-ratio:auto;height:100%;}
+  .plans{flex-direction:row;gap:16px;}
+  .plan{flex:1;}
+  .hero-cta-row{flex-direction:row;}
+}
+</style>
 </head>
 <body>
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Speaking Booster Community</h1>
-            <p style="font-size: 1.4em; font-weight: 700; line-height: 1.5; margin-bottom: 25px; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">Разговорный клуб английского по подписке от @katya.proeng</p>
-            <p style="font-weight: 600; line-height: 1.6;">Тут английский перестает быть теорией и становится вашей привычной средой<br><strong>Старт нового потока — 6 апреля</strong></p>
-            <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="cta-button">Записаться в клуб</a>
-        </div>
-    </section>
-    
-    <section class="transformation">
-        <div class="container">
-            <h2 class="section-title">Почему вам нужен Speaking Booster?</h2>
-            <div class="transformation-grid">
-                <div class="transformation-column before">
-                    <h3>До участия:</h3>
-                    <ul>
-                        <li>Понимаю английский, но боюсь говорить</li>
-                        <li>Постоянно перевожу в голове</li>
-                        <li>Забываю слова в нужный момент</li>
-                        <li>Избегаю разговоров с носителями</li>
-                        <li>Учу английский годами, но не вижу прогресса</li>
-                        <li>Не имею возможности постоянно практиковаться</li>
-                    </ul>
-                </div>
-                <div class="transformation-column after">
-                    <h3>После участия:</h3>
-                    <ul>
-                        <li>Говорю свободно и уверенно</li>
-                        <li>Думаю на английском, а не перевожу</li>
-                        <li>Легко подбираю нужные слова</li>
-                        <li>С удовольствием общаюсь с людьми со всего мира</li>
-                        <li>Вижу реальный прогресс каждую неделю</li>
-                        <li>Практикую язык несколько месяцев в комьюнити</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="why-it-works">
-        <div class="container">
-            <h2 class="section-title">Формула эффективности Speaking Booster</h2>
-            <div class="reasons-grid">
-                <div class="reason-card">
-                    <div class="reason-icon">🧠</div>
-                    <h3>Темы, которые цепляют</h3>
-                    <p>Не скучные диалоги из учебников, а актуальные вопросы: AI и будущее работы, biohacking, dating apps, digital detox. Вы не просто практикуете язык — вы обсуждаете то, что волнует.</p>
-                </div>
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
 
-                <div class="reason-card">
-                    <div class="reason-icon">💬</div>
-                    <h3>Маленькие группы = больше говорите вы</h3>
-                    <p>До 6 человек в группе. Это значит, что вы получаете достаточный объём практики и действительно говорите, а не просто слушаете других.</p>
-                </div>
-
-                <div class="reason-card">
-                    <div class="reason-icon">🫶</div>
-                    <h3>Комьюнити без страха ошибок</h3>
-                    <p>Здесь ошибки = рост. Никакой токсичности, только поддержка. Плюс speaking buddy для практики в комфортном формате 1 на 1.</p>
-                </div>
-
-                <div class="reason-card">
-                    <div class="reason-icon">🏆</div>
-                    <h3>Система мотивации, которая работает</h3>
-                    <p>Призы за активность (книги, сертификаты в кофейни), оффлайн-встречи в Алматы и Астане, приглашённые спикеры. Английский превращается из обязаловки в удовольствие.</p>
-                </div>
-            </div>
-            <div class="bonus-highlight">
-                <h3>🎁 Бонусы для участников</h3>
-                <div class="bonus-list">
-                    <div class="bonus-item">Встречи с приглашёнными спикерами + Q&A сессии</div>
-                    <div class="bonus-item">Призы за активность (книги на английском, сертификаты в кофейни, канцелярия)</div>
-                    <div class="bonus-item">Оффлайн-встречи в Алматы и Астане для нетворкинга</div>
-                </div>
-                <div style="margin-top: 35px; padding: 25px 30px; background: rgba(255, 249, 232, 0.08); border-left: 3px solid rgba(255, 249, 232, 0.4); border-radius: 15px; position: relative; z-index: 1;">
-    <p style="font-size: 1.05em; font-style: italic; opacity: 0.9; line-height: 1.8; font-weight: 500;">
-        <span style="font-weight: 700; font-style: normal;">P.S.</span> Став частью Speaking Booster Community, вы автоматически получаете доступ ко всем встречам со спикерами, Q&A сессиям и другим закрытым активностям клуба — пока вы с нами. 🎟️
-    </p>
-</div>           
-            </div>
-        </div>
-    </section>  
-    
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title" style="color: #FFF9E8;">Отзывы участников Speaking Booster Community</h2>
-            <div class="testimonial-carousel">
-                <div class="testimonial-track" id="testimonialTrack">
-                    <div class="testimonial-card">
-                        <img src="https://i.ibb.co/jvmwFCDP/Group-49.png" alt="Отзыв 1" class="testimonial-image">
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="https://i.ibb.co/RkSvP6dT/Group-50.png" alt="Отзыв 2" class="testimonial-image">
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="https://i.ibb.co/NnLKDFRK/Group-51.png" alt="Отзыв 3" class="testimonial-image">
-                    </div>
-                    <div class="testimonial-card">
-                        <img src="https://i.ibb.co/mr3JBFwW/Group-52.png" alt="Отзыв 4" class="testimonial-image">
-                    </div>    
-                    <div class="testimonial-card">
-    <img src="https://i.ibb.co/B572xCGz/Group-69.png" alt="Отзыв 5" class="testimonial-image">
-</div>
-<div class="testimonial-card">
-    <img src="https://i.ibb.co/vxnjhjqC/Group-70.png" alt="Отзыв 6" class="testimonial-image">
-</div>
-<div class="testimonial-card">
-    <img src="https://i.ibb.co/fYhDSXr9/Group-71.png" alt="Отзыв 7" class="testimonial-image">
-</div>
-<div class="testimonial-card">
-    <img src="https://i.ibb.co/LhdfTQM6/Group-73.png" alt="Отзыв 8" class="testimonial-image">
-</div>
-<div class="testimonial-card">
-    <img src="https://i.ibb.co/GG9DXdC/Group-74.png" alt="Отзыв 9" class="testimonial-image">
-</div>
-<div class="testimonial-card">
-    <img src="https://i.ibb.co/pjJvGvZC/Group-77.png" alt="Отзыв 10" class="testimonial-image">
-</div>
-<div class="testimonial-card">
-    <img src="https://i.ibb.co/vC60LgKb/Group-78.png" alt="Отзыв 11" class="testimonial-image">
-</div>
-                </div>
-                <div class="carousel-controls">
-                    <button class="carousel-arrow" id="prevTestimonial">‹</button>
-                    <div class="carousel-dots" id="testimonialDots"></div>
-                    <button class="carousel-arrow" id="nextTestimonial">›</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <section style="background: linear-gradient(160deg, #e8f4f0 0%, #FFF9E8 50%, #fdf0e8 100%); padding: 72px 24px; font-family:'Montserrat',sans-serif;">
-  <div style="max-width:720px; margin:0 auto; text-align:center;">
-
-    <div style="display:inline-block; background:rgba(100,146,152,0.12); border:1.5px solid rgba(100,146,152,0.3); color:#4a7780; padding:7px 20px; border-radius:50px; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:22px;">
-      🎁 Бесплатно
+  <div class="hero-body">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Осталось 3 места
     </div>
 
-    <h2 style="font-size:2.1em; font-weight:800; line-height:1.15; margin-bottom:14px; letter-spacing:-0.02em; color:#333C42; font-family:'Montserrat',sans-serif;">
-      Попробуйте Speaking Booster<br><span style="color:#649298;">перед участием</span>
-    </h2>
+    <h1>Speaking Booster<br><span>Community</span></h1>
 
-    <p style="font-size:1em; line-height:1.8; color:#666; font-weight:500; margin-bottom:44px; max-width:520px; margin-left:auto; margin-right:auto; font-family:'Montserrat',sans-serif;">
-     Если вы не уверены, подойдёт ли вам формат клуба, запишитесь на короткую демо-встречу со мной. Мы обсудим ваш уровень, цели и формат работы в сообществе — и вы поймёте, даст ли клуб нужный результат именно вам.
+    <p class="hero-sub">
+      Разговорный клуб английского по подписке от @katya.proeng<br>
+      <strong>Тут английский перестает быть теорией и становится вашей привычной средой</strong>
     </p>
 
-    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:44px;">
-
-      <div class="card1" style="background:white; border:1.5px solid rgba(100,146,152,0.15); border-radius:20px; padding:22px 28px; min-width:160px; box-shadow:0 8px 30px rgba(100,146,152,0.18), 0 2px 8px rgba(100,146,152,0.1); display:flex; flex-direction:column; align-items:center; gap:10px;">
-        <span style="font-size:28px; line-height:1;">⏱️</span>
-        <span style="font-size:1.5em; font-weight:800; color:#649298; line-height:1; font-family:'Montserrat',sans-serif;">15 минут</span>
-        <span style="font-size:12px; color:#888; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; font-family:'Montserrat',sans-serif;">личного общения</span>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">5–6</div>
+        <div class="hero-stat-label">человек в группе</div>
       </div>
-
-      <div class="card2" style="background:white; border:1.5px solid rgba(202,105,75,0.15); border-radius:20px; padding:22px 28px; min-width:160px; box-shadow:0 8px 30px rgba(202,105,75,0.18), 0 2px 8px rgba(202,105,75,0.1); display:flex; flex-direction:column; align-items:center; gap:10px;">
-        <span style="font-size:28px; line-height:1;">🤝</span>
-        <span style="font-size:1.5em; font-weight:800; color:#CA694B; line-height:1; font-family:'Montserrat',sans-serif;">без</span>
-        <span style="font-size:12px; color:#888; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; font-family:'Montserrat',sans-serif;">обязательств</span>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1 мес.</div>
+        <div class="hero-stat-label">практики</div>
       </div>
-
-      <div class="card3" style="background:white; border:1.5px solid rgba(100,146,152,0.15); border-radius:20px; padding:22px 28px; min-width:160px; box-shadow:0 8px 30px rgba(100,146,152,0.18), 0 2px 8px rgba(100,146,152,0.1); display:flex; flex-direction:column; align-items:center; gap:10px;">
-        <span style="font-size:28px; line-height:1;">💬</span>
-        <span style="font-size:1.5em; font-weight:800; color:#649298; line-height:1; font-family:'Montserrat',sans-serif;">1-на-1</span>
-        <span style="font-size:12px; color:#888; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; font-family:'Montserrat',sans-serif;">со мной</span>
+      <div class="hero-stat">
+        <div class="hero-stat-num">4×</div>
+        <div class="hero-stat-label">актуальные темы</div>
       </div>
-
     </div>
 
-    <a href="https://wa.me/77077874774" target="_blank" style="display:inline-block; padding:20px 52px; background:#CA694B; color:#FFF9E8; text-decoration:none; border-radius:60px; font-weight:800; font-size:1.1em; box-shadow:0 12px 40px rgba(202,105,75,0.35); letter-spacing:0.01em; font-family:'Montserrat',sans-serif;">
-      Записаться на демо-встречу →
-    </a>
-
-    <p style="margin-top:16px; font-size:12px; color:#aaa; font-weight:500; font-family:'Montserrat',sans-serif;">Количество мест ограничено</p>
-
+    <div class="hero-cta-row">
+      <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="btn-primary">
+        Записаться в клуб →
+      </a>
+      <a href="https://wa.me/77077874774" target="_blank" class="btn-secondary">
+        Бесплатная демо-встреча
+      </a>
+    </div>
   </div>
 </section>
 
-    <section class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">Как работает клуб и что вы получаете каждый месяц?</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Изучаете материал</h3>
-                    <div class="step-content">
-                        <p><span class="checkmark">✅</span>Доступ к онлайн-платформе с ключевой лексикой и идеями по теме недели</p>
-                        <p><span class="checkmark">✅</span>Карточки Quizlet для быстрого запоминания новых слов и выражений</p>
-                           <p><span class="checkmark">✅</span>Revision-секции на платформе каждые 2 недели для повторения материала</p>                    
-                    </div>
-                </div>
+<!-- ─── BEFORE / AFTER ─── -->
+<section class="transform">
+  <div class="label">Трансформация</div>
+  <h2>Почему вам нужен<br>Speaking Booster?</h2>
 
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Готовитесь с buddy</h3>
-                    <div class="step-content">
-                        <p><span class="checkmark">✅</span>4 speaking buddy-сессии (по желанию, в удобное для вас время)</p>
-                        <div class="step-description">
-                            Проговариваете лексику, обсуждаете вопросы недели и разгоняете речь перед групповой встречей в комфортной обстановке 1 на 1
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Практикуете в группе</h3>
-                    <div class="step-content">
-                        <p><span class="checkmark">✅</span>4 живых групповых сессии (90 мин каждая, 5-6 человек, по выходным)</p>
-                        <p><span class="checkmark">✅</span>Индивидуальный фидбэк после каждой встречи: рекомендации по лексике, грамматике и тому, как звучать более естественно</p>                      
-                    <div class="step-description">
-                            Глубокие разговоры с Катей и другими участниками, мини-дискуссии и уверенная практика, чтобы звучать естественно и свободно
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="about-me">
-        <div class="container">
-            <h2 class="section-title">Почему мне можно доверять?</h2>
-            <div class="about-content">
-                <img src="https://i.ibb.co/gZRgH252/IMG-1234-1-1.png" class="about-image" alt="Катя">
-                <div class="about-text">
-                    <p>Hello there!👋 Меня зовут Катя, и я помогаю людям влюбляться в английский <span class="highlight">уже 5 лет</span>. </p>
-                    <p>Я жила и работала в Южной Корее и Дании, поэтому знаю не понаслышке, что значит <span class="highlight">использовать английский каждый день</span> в реальной жизни — а не просто зубрить его по учебникам.</p>
-                    <p><span class="highlight">Мои ученики переезжают за границу, поступают в топовые вузы Европы и уверенно общаются на работе с международными командами.</span></p>
-                    <p><span class="highlight">Моя цель?</span> Помочь тебе говорить свободно, уверенно — и наконец-то получать <span class="highlight">удовольствие</span> от каждого разговора на английском.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="topics">
-        <div class="container">
-            <h2 class="section-title">Темы предстоящего месяца</h2>
-            <div class="topics-list">
-                <div class="topic-item">
-                    <div class="topic-emoji">🎨</div>
-                    <div class="topic-text">Hobbies in Adult Life: Rest, Growth, or Pressure to Be Productive</div>
-                </div>
-                <div class="topic-item">
-                    <div class="topic-emoji">🛍️</div>
-                    <div class="topic-text">Overconsumption Core: Why Do We Keep Buying More Than We Need?</div>
-                </div>
-                <div class="topic-item">
-                    <div class="topic-emoji">🔑</div>
-                    <div class="topic-text">Data Privacy in the Digital Age: How Much of Your Life Are You Willing to Share?</div>
-                </div>
-                <div class="topic-item">
-                    <div class="topic-emoji">🧑‍💻</div>
-                    <div class="topic-text">Personal Brand: Does It Shape Your Career Opportunities?</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="screenshots">
-        <div class="container">
-            <h2 class="section-title">Наши сессии в действии</h2>
-            <div class="screenshot-carousel">
-                <div class="screenshot-track" id="screenshotTrack">
-                    <div class="screenshot-item">
-                        <img src="https://i.ibb.co.com/YBfMW25L/Group-53.png" alt="Сессия 1" class="screenshot-image">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="https://i.ibb.co.com/M5KYsZrB/Group-56.png" alt="Сессия 2" class="screenshot-image">
-                    </div>
-                    <div class="screenshot-item">
-                        <img src="https://i.ibb.co.com/sJ6ym1vY/Group-57.png" alt="Сессия 3" class="screenshot-image">
-                    </div>
-                </div>
-                <div class="screenshot-controls">
-                    <button class="screenshot-arrow" id="prevScreenshot">‹</button>
-                    <div class="screenshot-dots" id="screenshotDots"></div>
-                    <button class="screenshot-arrow" id="nextScreenshot">›</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="pricing">
-        <div class="container">
-            <h2 class="section-title">Выбирайте удобный тариф</h2>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <h3>1 месяц</h3>
-                    <div class="price">30,990 ₸</div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>✔ 4 групповых сессии</li>
-                            <li>✔ Speaking buddy-сессии</li>
-                            <li>✔ Доступ к платформе</li>
-                            <li>✔ Карточки Quizlet</li>
-                        </ul>
-                    </div>
-                    <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="pricing-button">Записаться</a>
-                </div>
-
-                <div class="pricing-card">
-                    <h3>2 месяца</h3>
-                    <div class="price">56,990 ₸</div>
-                    <div class="savings">💸 Экономия: 4,990 ₸</div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>✔ 8 групповых сессий</li>
-                            <li>✔ Speaking buddy-сессии</li>
-                            <li>✔ Доступ к платформе</li>
-                            <li>✔ Карточки Quizlet</li>
-                        </ul>
-                    </div>
-                    <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="pricing-button">Записаться</a>
-                </div>
-
-                <div class="pricing-card popular">
-                    <div class="popular-badge">⭐ Самый популярный</div>
-                    <h3>3 месяца</h3>
-                    <div class="price">72,990 ₸</div>
-                    <div class="savings">💸 Экономия: 19,980 ₸</div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li>✔ 12 групповых сессий</li>
-                            <li>✔ Speaking buddy-сессии</li>
-                            <li>✔ Доступ к платформе</li>
-                            <li>✔ Карточки Quizlet</li>
-                            <li>✔ <strong>Максимальная выгода</strong></li>
-                        </ul>
-                    </div>
-                    <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="pricing-button">Записаться</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">Частые вопросы о Speaking Booster Community</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>❓ Сколько человек в группе?</h3>
-                    <div class="faq-answer">
-                        <p>Группы для живых разговорных сессий максимально комфортные по количеству, чтобы у каждого была возможность для практики — 5-6 человек.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h3>❓ Что если я пропущу встречу?</h3>
-                    <div class="faq-answer">
-                        <p>Ничего страшного! Запись встречи не делается, но все материалы остаются на платформе EdVibe и вы сможете поработать с ними самостоятельно.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h3>❓ У меня мало времени, успею ли я участвовать?</h3>
-                    <div class="faq-answer">
-                        <p>Да! Разговорные сессии проходят по выходным, а speaking buddy-встречи можно назначить в удобный день и время. Будет достаточно 10-15 минут в день, чтобы подготовиться к разговорной сессии на выходных.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h3>❓ Можно ли отменять speaking buddy-сессии?</h3>
-                    <div class="faq-answer">
-                        <p>Да, они по желанию. Вы сами решаете, хотите ли вы встречаться на этой неделе.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h3>❓ Что делать, если я стесняюсь говорить?</h3>
-                    <div class="faq-answer">
-                        <p>Наш формат построен так, чтобы вы постепенно привыкали к разговору. Никаких экзаменов — только поддерживающая атмосфера и практика.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h3>❓ А если я не из Алматы или Астаны?</h3>
-                    <div class="faq-answer">
-                        <p>Онлайн-формат доступен из любой точки мира. Оффлайн-встречи — приятный бонус для тех, кто живёт в этих городах.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <h3>❓ Можно ли присоединиться в середине месяца?</h3>
-                    <div class="faq-answer">
-                        <p>К сожалению, нет, вам нужно будет ждать старта потока нового месяца, чтобы ваш опыт участия в клубе был полноценным и насыщенным.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-    <h3>❓ Можно ли заморозить подписку?</h3>
-    <div class="faq-answer">
-        <p>Да! Если вы приобрели тариф на 3 месяца, вы можете заморозить участие на один месяц — просто сообщите об этом заранее, и я перенесу этот месяц на удобное для вас время.</p>
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <div class="ba-card-head">
+        <div class="ba-icon">😔</div>
+        <div class="ba-title">До участия</div>
+      </div>
+      <div class="ba-list">
+        <div class="ba-item"><div class="ba-item-dot">✗</div>Понимаю, но боюсь говорить</div>
+        <div class="ba-item"><div class="ba-item-dot">✗</div>Перевожу в голове каждую фразу</div>
+        <div class="ba-item"><div class="ba-item-dot">✗</div>Забываю слова в нужный момент</div>
+        <div class="ba-item"><div class="ba-item-dot">✗</div>Учу годами — прогресса не вижу</div>
+      </div>
     </div>
-</div>
-            </div>
-        </div>
-    </section>
+    <div class="ba-card after">
+      <div class="ba-card-head">
+        <div class="ba-icon">✨</div>
+        <div class="ba-title">После участия</div>
+      </div>
+      <div class="ba-list">
+        <div class="ba-item"><div class="ba-item-dot">✓</div>Говорю свободно и уверенно</div>
+        <div class="ba-item"><div class="ba-item-dot">✓</div>Думаю на английском</div>
+        <div class="ba-item"><div class="ba-item-dot">✓</div>Легко подбираю нужные слова</div>
+        <div class="ba-item"><div class="ba-item-dot">✓</div>Вижу прогресс каждую неделю</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="form-section" id="signup">
-        <div class="container">
-            <h2 class="section-title" style="color: #FFF9E8; margin-bottom: 30px;">Join the next wave 🚀</h2>
-            <p style="font-size: 1.3em; margin-bottom: 15px; font-weight: 700; line-height: 1.5;">Новый поток Speaking Booster Community стартует 6 апреля</p>
-            <p style="font-size: 1.2em; margin-bottom: 15px; opacity: 0.95; font-weight: 500;">Осталось всего 3 места (группы до 6 человек)</p>
-            <p style="font-size: 1.2em; margin-bottom: 50px; opacity: 0.9; font-weight: 500;">Don't wait, join the community that speaks English for real.</p>
-            <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="form-button">Заполнить анкету</a>
-        </div>
-    </section>
+<!-- ─── HOW IT WORKS ─── -->
+<section class="how">
+  <div class="label">Как устроено</div>
+  <h2>3 шага к<br>свободной речи</h2>
+  <p class="section-sub">Простая система, которая работает каждую неделю</p>
 
-    <footer>
-        <p>&copy; 2026 Speaking Booster Community. Все права защищены.</p>
-    </footer>
+  <div class="steps">
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Изучаете материал онлайн</div>
+        <div class="step-desc">Платформа с лексикой и идеями по теме недели + карточки Quizlet. 10–15 минут в день.</div>
+        <div class="step-tags"><span class="tag">EdVibe платформа</span><span class="tag">Quizlet-карточки</span><span class="tag">Revision каждые 2 нед.</span></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Разгоняете речь с buddy</div>
+        <div class="step-desc">4 сессии 1-на-1 с другим участником. Проговариваете лексику перед групповой встречей — без стресса.</div>
+        <div class="step-tags"><span class="tag">1-на-1 формат</span><span class="tag">По желанию</span></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-left">
+        <div class="step-num">3</div>
+      </div>
+      <div class="step-content">
+        <div class="step-title">Практикуете в живой группе</div>
+        <div class="step-desc">4 сессии по 90 минут. 5–6 человек, реальные темы, индивидуальный фидбэк после каждой встречи.</div>
+        <div class="step-tags"><span class="tag">90 мин. × 4</span><span class="tag">Фидбэк по лексике</span><span class="tag">По выходным</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+<!-- ─── WHY IT WORKS ─── -->
+<section class="why">
+  <div class="label">Почему это работает</div>
+  <h2>Формула Speaking<br>Booster</h2>
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-emoji">🧠</div>
+      <div class="why-text">
+        <h3>Темы, которые цепляют</h3>
+        <p>AI и job market, friendship as adults, overconsumption — вы обсуждаете то, что действительно волнует.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">💬</div>
+      <div class="why-text">
+        <h3>Маленькие группы</h3>
+        <p>До 6 человек. Вы говорите, а не слушаете. Достаточный объём практики каждую сессию.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">🫶</div>
+      <div class="why-text">
+        <h3>Безопасное пространство</h3>
+        <p>Ошибки = рост. Никакой токсичности, только поддержка. Speaking buddy — для старта без стресса.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-emoji">🏆</div>
+      <div class="why-text">
+        <h3>Мотивация изнутри</h3>
+        <p>Призы за активность, оффлайн-встречи в Алматы и Астане, гостевые спикеры и Q&A.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+<!-- ─── TOPICS ─── -->
+<section class="topics">
+  <div class="label">Ближайший месяц</div>
+  <h2>Темы апрельского<br>потока</h2>
 
-        document.querySelectorAll('.transformation-column, .reason-card, .step-card, .topic-item, .pricing-card, .faq-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
+  <div class="topics-grid">
+    <div class="topic-card"><div class="topic-emoji">🎨</div><div class="topic-text">Hobbies in Adult Life: Rest, Growth, or Pressure?</div></div>
+    <div class="topic-card"><div class="topic-emoji">🛍️</div><div class="topic-text">Overconsumption Core: Why Do We Keep Buying More?</div></div>
+    <div class="topic-card"><div class="topic-emoji">🔑</div><div class="topic-text">Data Privacy: How Much Are You Willing to Share?</div></div>
+    <div class="topic-card"><div class="topic-emoji">🧑‍💻</div><div class="topic-text">Personal Brand: Does It Shape Your Career?</div></div>
+  </div>
+</section>
 
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        });
+<!-- ─── REVIEWS ─── -->
+<section class="reviews">
+  <div class="label">Отзывы</div>
+  <h2>Что говорят<br>участники</h2>
 
-        let currentTestimonial = 0;
-        const testimonialTrack = document.getElementById('testimonialTrack');
-        const testimonialCards = document.querySelectorAll('.testimonial-card');
-        const testimonialDotsContainer = document.getElementById('testimonialDots');
-        const prevTestimonialBtn = document.getElementById('prevTestimonial');
-        const nextTestimonialBtn = document.getElementById('nextTestimonial');
+  <div class="review-scroll">
+    <div class="review-card"><img src="https://i.ibb.co/jvmwFCDP/Group-49.png" alt="Отзыв 1" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/RkSvP6dT/Group-50.png" alt="Отзыв 2" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/NnLKDFRK/Group-51.png" alt="Отзыв 3" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/mr3JBFwW/Group-52.png" alt="Отзыв 4" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/B572xCGz/Group-69.png" alt="Отзыв 5" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/vxnjhjqC/Group-70.png" alt="Отзыв 6" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/fYhDSXr9/Group-71.png" alt="Отзыв 7" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/LhdfTQM6/Group-73.png" alt="Отзыв 8" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/GG9DXdC/Group-74.png" alt="Отзыв 9" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/pjJvGvZC/Group-77.png" alt="Отзыв 10" loading="lazy"></div>
+    <div class="review-card"><img src="https://i.ibb.co/vC60LgKb/Group-78.png" alt="Отзыв 11" loading="lazy"></div>
+  </div>
+  <div class="review-hint">
+    <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M14 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Листайте вправо
+  </div>
+</section>
 
-        testimonialCards.forEach((_, index) => {
-            const dot = document.createElement('button');
-            dot.className = 'dot';
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToTestimonial(index));
-            testimonialDotsContainer.appendChild(dot);
-        });
+<!-- ─── ABOUT ─── -->
+<section class="about">
+  <div class="label">Ваш преподаватель</div>
+  <h2>Привет, я Катя 👋</h2>
 
-        function goToTestimonial(index) {
-            currentTestimonial = index;
-            testimonialTrack.style.transform = `translateX(-${currentTestimonial * 100}%)`;
-            
-            const dots = testimonialDotsContainer.querySelectorAll('.dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentTestimonial);
-            });
-        }
+  <div class="about-card">
+    <img src="https://i.ibb.co/gZRgH252/IMG-1234-1-1.png" alt="Катя" class="about-img" loading="lazy">
+    <div class="about-body">
+      <h3>Помогаю влюбляться<br>в английский 5 лет</h3>
+      <p>Жила и работала в <strong>Южной Корее и Дании</strong> — знаю не понаслышке, что значит использовать английский каждый день в реальной жизни.</p>
+      <p>Мои ученики переезжают за границу, поступают в <strong>топовые вузы Европы</strong> и уверенно работают в международных командах.</p>
+      <div class="about-chips">
+        <span class="chip">TESOL/TEFL</span>
+        <span class="chip">26+ стран</span>
+        <span class="chip">Корея · Дания</span>
+        <span class="chip">@katya.proeng</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function nextTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
-            goToTestimonial(currentTestimonial);
-        }
+<!-- ─── PRICING ─── -->
+<section class="pricing">
+  <div class="label">Тарифы</div>
+  <h2>Выберите свой план</h2>
+  <p class="section-sub">Старт нового потока — 6 апреля. Осталось 3 места.</p>
 
-        function prevTestimonial() {
-            currentTestimonial = (currentTestimonial - 1 + testimonialCards.length) % testimonialCards.length;
-            goToTestimonial(currentTestimonial);
-        }
+  <div class="plans">
+    <div class="plan">
+      <div class="plan-header">
+        <div class="plan-name">1 месяц</div>
+      </div>
+      <div class="plan-price">30 990 ₸</div>
+      <div class="plan-per">в месяц</div>
+      <div class="plan-features">
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>4 групповых сессии (90 мин.)</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Speaking buddy-сессии</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Доступ к платформе + Quizlet</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Фидбэк после каждой встречи</div>
+      </div>
+      <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="btn-primary">Записаться →</a>
+    </div>
 
-        prevTestimonialBtn.addEventListener('click', prevTestimonial);
-        nextTestimonialBtn.addEventListener('click', nextTestimonial);
+    <div class="plan">
+      <div class="plan-header">
+        <div class="plan-name">2 месяца</div>
+        <div class="plan-save">−4 990 ₸</div>
+      </div>
+      <div class="plan-price">56 990 ₸</div>
+      <div class="plan-per">28 495 ₸ / мес.</div>
+      <div class="plan-features">
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>8 групповых сессий</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Speaking buddy-сессии</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Доступ к платформе + Quizlet</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Фидбэк после каждой встречи</div>
+      </div>
+      <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="btn-primary">Записаться →</a>
+    </div>
 
-        let currentScreenshot = 0;
-        const screenshotTrack = document.getElementById('screenshotTrack');
-        const screenshotItems = document.querySelectorAll('.screenshot-item');
-        const screenshotDotsContainer = document.getElementById('screenshotDots');
-        const prevScreenshotBtn = document.getElementById('prevScreenshot');
-        const nextScreenshotBtn = document.getElementById('nextScreenshot');
+    <div class="plan featured">
+      <div class="plan-badge">⭐ Лучший выбор</div>
+      <div class="plan-header">
+        <div class="plan-name">3 месяца</div>
+        <div class="plan-save">−19 980 ₸</div>
+      </div>
+      <div class="plan-price">72 990 ₸</div>
+      <div class="plan-per">24 330 ₸ / мес.</div>
+      <div class="plan-features">
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>12 групповых сессий</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Speaking buddy-сессии</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Доступ к платформе + Quizlet</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Фидбэк после каждой встречи</div>
+        <div class="plan-feat"><div class="plan-feat-dot">✓</div>Заморозка на 1 месяц</div>
+      </div>
+      <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="btn-primary">Записаться →</a>
+    </div>
+  </div>
+</section>
 
-        screenshotItems.forEach((_, index) => {
-            const dot = document.createElement('button');
-            dot.className = 'screenshot-dot';
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToScreenshot(index));
-            screenshotDotsContainer.appendChild(dot);
-        });
+<!-- ─── DEMO ─── -->
+<section class="demo">
+  <div class="demo-card">
+    <h3>Не уверены?<br>Приходите на демо-встречу</h3>
+    <p>Бесплатная встреча 1-на-1 со мной — 15 минут. Обсудим ваш уровень и цели, и вы поймёте, подойдёт ли вам формат клуба.</p>
+    <div class="demo-pills">
+      <div class="demo-pill"><span class="demo-pill-icon">⏱️</span>15 минут</div>
+      <div class="demo-pill"><span class="demo-pill-icon">🤝</span>Без обязательств</div>
+      <div class="demo-pill"><span class="demo-pill-icon">💬</span>1-на-1</div>
+    </div>
+    <a href="https://wa.me/77077874774" target="_blank" class="btn-primary">Записаться на демо →</a>
+    <p style="margin-top:12px;font-size:11px;color:rgba(255,249,232,0.35);margin-bottom:0;">Количество мест ограничено</p>
+  </div>
+</section>
 
-        function goToScreenshot(index) {
-            currentScreenshot = index;
-            screenshotTrack.style.transform = `translateX(-${currentScreenshot * 100}%)`;
-            
-            const dots = screenshotDotsContainer.querySelectorAll('.screenshot-dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentScreenshot);
-            });
-        }
+<!-- ─── FAQ ─── -->
+<section class="faq">
+  <div class="label">FAQ</div>
+  <h2>Частые вопросы</h2>
 
-        function nextScreenshot() {
-            currentScreenshot = (currentScreenshot + 1) % screenshotItems.length;
-            goToScreenshot(currentScreenshot);
-        }
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q">Сколько человек в группе?<div class="faq-icon">+</div></button>
+      <div class="faq-a"><p>Максимум 5–6 человек. Это сделано специально, чтобы каждый участник получил достаточно времени для практики.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Что если пропущу встречу?<div class="faq-icon">+</div></button>
+      <div class="faq-a"><p>Записи не делаются, но все материалы недели остаются на платформе EdVibe. Можно проработать их самостоятельно.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">У меня мало времени — успею?<div class="faq-icon">+</div></button>
+      <div class="faq-a"><p>Да! Сессии по выходным, buddy-встречи в удобное время. 10–15 минут в день подготовки — достаточно.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Я стесняюсь говорить, это нормально?<div class="faq-icon">+</div></button>
+      <div class="faq-a"><p>Абсолютно! Именно для таких и создан формат. Маленькая группа, поддерживающая атмосфера, buddy-сессии 1-на-1 перед группой — всё это помогает раскрыться.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Я не из Казахстана, можно участвовать?<div class="faq-icon">+</div></button>
+      <div class="faq-a"><p>Да! Клуб полностью онлайн, подключайтесь из любой точки мира. Оффлайн-встречи — бонус для тех, кто в Алматы и Астане.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Можно ли заморозить подписку?<div class="faq-icon">+</div></button>
+      <div class="faq-a"><p>Да, при тарифе на 3 месяца можно заморозить один месяц. Просто предупредите заранее.</p></div>
+    </div>
+  </div>
+</section>
 
-        function prevScreenshot() {
-            currentScreenshot = (currentScreenshot - 1 + screenshotItems.length) % screenshotItems.length;
-            goToScreenshot(currentScreenshot);
-        }
+<!-- ─── FINAL CTA ─── -->
+<section class="final-cta">
+  <div class="label">Последний шаг</div>
+  <h2>Начните говорить<br>уже 6 апреля</h2>
+  <p>Новый поток стартует 6 апреля.<br>Осталось всего 3 места — успейте забрать своё</p>
+  <div class="urgency">🔥 3 места из 6</div>
+  <a href="https://forms.gle/yJmUjZsC2Ycuocru8" target="_blank" class="btn-primary">Заполнить анкету →</a>
+</section>
 
-        prevScreenshotBtn.addEventListener('click', prevScreenshot);
-        nextScreenshotBtn.addEventListener('click', nextScreenshot);
-    </script>
+<footer>© 2026 Speaking Booster Community · @katya.proeng</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
 </body>
 </html>
-
 
 
 
