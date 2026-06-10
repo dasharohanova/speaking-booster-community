@@ -635,6 +635,11 @@ footer{
   .plan{flex:1;}
   .hero-cta-row{flex-direction:row;}
 }
+  @keyframes sticker-pop {
+  0%   { transform:rotate(-8deg) scale(0);    opacity:0; }
+  60%  { transform:rotate(-1deg) scale(1.12); opacity:1; }
+  100% { transform:rotate(-2deg) scale(1);    opacity:1; }
+}
 </style>
 </head>
 <body>
@@ -651,7 +656,7 @@ footer{
       Осталось 5 мест
     </div>
 
-    <h1>Speaking Booster<br><span>Community</span></h1>
+    <h1>Speaking Booster<br><span>Community</span><span style="display:inline-block;background:rgba(202,105,75,0.15);border:1.5px solid rgba(202,105,75,0.4);color:#CA694B;padding:6px 14px;border-radius:50px;font-size:clamp(11px,2vw,14px);font-weight:800;letter-spacing:0.08em;transform:rotate(-2deg) scale(0);opacity:0;vertical-align:middle;margin-left:10px;font-family:'Onest',sans-serif;animation:sticker-pop 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.6s forwards;">☀️ SUMMER EDITION</span></h1>
 
    <p class="hero-sub">
   Разговорный клуб английского по подписке от @katya.proeng<br>
