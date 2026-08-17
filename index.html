@@ -321,7 +321,7 @@ h2{
   background:var(--bg);
   border-radius:16px;
   padding:18px 20px;
-  display:flex;align-items:center;gap:14px;
+  display:flex;align-items:flex-start;gap:14px;
   transition:all 0.25s ease;
   border:1.5px solid transparent;
 }
@@ -336,10 +336,12 @@ h2{
   line-height:1.4;color:var(--dark);
 }
   .topic-text-ru{
+  margin-top:8px;
+  padding-left:10px;
+  border-left:2px solid rgba(100,146,152,0.4);
   font-size:12px;font-weight:500;
+  line-height:1.45;
   color:var(--muted);
-  line-height:1.4;
-  margin-top:4px;
 }
 /* ─── PRICING ─── */
 .pricing{background:var(--dark);}
@@ -814,11 +816,35 @@ footer{
   <div class="label">Ближайший месяц</div>
   <h2>Темы июньского<br>потока</h2>
 
-  <div class="topics-grid">
-    <div class="topic-card"><div class="topic-emoji">✈️</div><div class="topic-text">Travel Philosophy: Are We Traveling to Explore, or Just to Consume?<div class="topic-text-ru">Философия путешествий: мы путешествуем, чтобы узнавать мир, или просто чтобы потреблять?</div></div></div>
-    <div class="topic-card"><div class="topic-emoji">📸</div><div class="topic-text">Pics or It Didn't Happen: Are We Staging Our Summer or Living It?<div class="topic-text-ru">Не сфоткал — не считается: мы живём летом или постановочно снимаем его?</div></div></div>
-    <div class="topic-card"><div class="topic-emoji">🏕️</div><div class="topic-text">Nature as Therapy: Can Reconnecting with the Wild Truly Reset Us?<div class="topic-text-ru">Природа как терапия: способна ли связь с дикой природой по-настоящему перезагрузить нас?</div></div></div>
-    <div class="topic-card"><div class="topic-emoji">✨</div><div class="topic-text">(Mega Revision) The Art of True Escape: Have We Forgotten How to Unplug?<div class="topic-text-ru">(Мега-повторение) Искусство настоящего отдыха: разучились ли мы отключаться?</div></div></div>
+ <div class="topics-grid">
+    <div class="topic-card">
+      <div class="topic-emoji">🏆</div>
+      <div>
+        <div class="topic-text">Redefining Success: Is More Still Better?</div>
+        <div class="topic-text-ru">Что вообще считать успешной жизнью?</div>
+      </div>
+    </div>
+    <div class="topic-card">
+      <div class="topic-emoji">🧭</div>
+      <div>
+        <div class="topic-text">Big Life Decisions: How Do We Know What's Right?</div>
+        <div class="topic-text-ru">Как принимать сложные решения?</div>
+      </div>
+    </div>
+    <div class="topic-card">
+      <div class="topic-emoji">🚪</div>
+      <div>
+        <div class="topic-text">The Cost of Staying: When Is Comfort Holding Us Back?</div>
+        <div class="topic-text-ru">Почему мы боимся менять то, что уже не работает?</div>
+      </div>
+    </div>
+    <div class="topic-card">
+      <div class="topic-emoji">✨</div>
+      <div>
+        <div class="topic-text">Mega Revision: Are We Building a Life We Actually Want?</div>
+        <div class="topic-text-ru">Как всё это складывается в нашу собственную концепцию хорошей жизни?</div>
+      </div>
+    </div>
   </div>
 </section>
 
